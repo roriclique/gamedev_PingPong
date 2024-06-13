@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     private float startSpeed;
     private Rigidbody2D rb;
 
-    protected virtual void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         direction = new Vector2(Random.Range(-3f, 3f), Random.Range(-0.5f, 0.5f));
@@ -23,7 +23,7 @@ public class Ball : MonoBehaviour
         rb.velocity = direction.normalized * speed;
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

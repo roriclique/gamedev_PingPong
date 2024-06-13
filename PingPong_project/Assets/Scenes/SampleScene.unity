@@ -203,11 +203,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4578962951632162803, guid: c5f5f132dedd9b641b22d5e8bf8af750, type: 3}
   m_PrefabInstance: {fileID: 2786860741427887509}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &659350845 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3563257812574627807, guid: 7e2ee38b67775704782bd17288f22969, type: 3}
-  m_PrefabInstance: {fileID: 1446696454524148958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &871465866
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1277137025}
   menuWindow: {fileID: 1665839516}
-  mods: {fileID: 282679178}
+  modes: {fileID: 282679178}
 --- !u!4 &1131736840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 720639550636313562, guid: c5f5f132dedd9b641b22d5e8bf8af750, type: 3}
@@ -579,7 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuWindow: {fileID: 296565733}
-  oneplayerButton: {fileID: 659350845}
+  onePlayerButton: {fileID: 0}
   twoPlayersButton: {fileID: 1711724368}
 --- !u!114 &1665839517
 MonoBehaviour:

@@ -4,7 +4,7 @@ public class Manager : MonoBehaviour
 {
     [SerializeField] private Ball ball;
     [SerializeField] private UI menuWindow;
-    [SerializeField] private Mods mods;
+    [SerializeField] private Modes modes;
 
     void Start()
     {
@@ -15,15 +15,15 @@ public class Manager : MonoBehaviour
     {
         menuWindow.CloseMenu();
 
-        mods.SingleMode();
+        modes.SingleMode();
         ball.enabled = true;
     }
 
-    public void SetSMultiMode()
+    public void SetMultiMode()
     {
         menuWindow.CloseMenu();
 
-        mods.MultiMode();
+        modes.MultiMode();
         ball.enabled = true;
     }
 }

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Mods : MonoBehaviour
+public class Modes : MonoBehaviour
 {
     [SerializeField] private FirstPlayerController player1Controller;
     [SerializeField] private SecondPlayerController player2Controller;
     [SerializeField] private BotController botController;
 
-    private void Start()
+    void Start()
     {
         player1Controller = GetComponentInChildren<FirstPlayerController>();
         player2Controller = GetComponentInChildren<SecondPlayerController>();
