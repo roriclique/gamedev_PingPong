@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Modes : MonoBehaviour
 {
-    [SerializeField] private FirstPlayerController player1Controller;
-    [SerializeField] private SecondPlayerController player2Controller;
-    [SerializeField] private BotController botController;
+    [SerializeField] public FirstPlayerController player1Controller;
+    [SerializeField] public SecondPlayerController player2Controller;
+    [SerializeField] public BotController botController;
 
     void Start()
     {
