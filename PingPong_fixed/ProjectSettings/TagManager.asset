@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Score1Player
+  - GameZone
+  - Score2Player
+  - Bot
+  - Player2
+  - Bot2
   layers:
   - Default
   - TransparentFX
@@ -40,4 +46,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 3539872889
+    locked: 0
+  - name: Front
+    uniqueID: 2461902317
+    locked: 0
+  - name: Middle
+    uniqueID: 4087031021
     locked: 0

@@ -17,55 +17,47 @@ public class Manager : MonoBehaviour
     {
         sceneToDisable.SetActive(true);
         menuWindow.MenuIsActive();
+        Time.timeScale = 0f;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(menuIsActive)
-            {
-                MenuCloseToContinue();
-            }
-            else
-            {
-                MenuInvocation();
-            }
+            MenuInvocation();
         }
     }
 
     public void MenuInvocation()
     {
-        menuWindow.MenuIsActive();
-        menuIsActive = true;
+        menuWindow.MenuIsActiveResume();
+        //menuIsActive = true;
         Time.timeScale = 0f;
     }
 
     public void MenuCloseToContinue()
     {
         menuWindow.CloseMenu();
-        menuIsActive = false;
+        //menuIsActive = false;
         Time.timeScale = 1f;
     }
 
-    public void SetSingleMode()
+    public void SetBotMode()
     {
         menuWindow.CloseMenu();
         scoreCollector.StartScores();
-        ball.rb.simulated = true;
+        modes.BotMode();
 
-        modes.SingleMode();
-        ball.enabled = true;
+        Time.timeScale = 1f;
     }
 
     public void SetMultiMode()
     {
         menuWindow.CloseMenu();
         scoreCollector.StartScores();
-        ball.rb.simulated = true;
-
         modes.MultiMode();
-        ball.enabled = true;
+
+        Time.timeScale = 1f;
     }
 
     public void OnApplicationQuit()

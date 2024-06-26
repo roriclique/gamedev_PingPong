@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
@@ -18,14 +20,21 @@ public class Ball : MonoBehaviour
         startSpeed = speed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = direction.normalized * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
+        {
+            direction.x = -direction.x;
+            direction.y = Random.Range(-1f, 1f);
+            speed += accelSpeed;
+        }
+
+        if (collision.gameObject.CompareTag("Bot"))
         {
             direction.x = -direction.x;
             direction.y = Random.Range(-1f, 1f);
@@ -34,8 +43,14 @@ public class Ball : MonoBehaviour
 
         if (collision.gameObject.CompareTag("GameZone"))
         {
-            direction.y = -direction.y;
-            direction.x = Random.Range(-5f, 5f);
+            Vector2 newPos = new Vector2(direction.x, direction.y);
+            Vector2 normal = new Vector2(0, 1);
+
+            Vector2 newPos2 = Vector2.Reflect(newPos, normal);
+
+            direction.x = newPos2.x;
+            direction.y = newPos2.y;
+            
         }
 
         if (collision.gameObject.CompareTag("Score1Player") || collision.gameObject.CompareTag("Score2Player"))

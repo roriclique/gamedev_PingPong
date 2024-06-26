@@ -1,27 +1,22 @@
 using UnityEngine;
 
-public class Modes : MonoBehaviour
+public class Modes : Controller
 {
-    [SerializeField] public FirstPlayerController player1Controller;
-    [SerializeField] public SecondPlayerController player2Controller;
-    [SerializeField] public BotController botController;
-
-    void Start()
+    public void BotMode()
     {
-        player1Controller = GetComponentInChildren<FirstPlayerController>();
-        player2Controller = GetComponentInChildren<SecondPlayerController>();
-        botController = GetComponentInChildren<BotController>();
-    }
+        player1Controller.gameObject.SetActive(false);
+        player2Controller.gameObject.SetActive(false);
 
-    public void SingleMode()
-    {
-        player1Controller.enabled = true;
-        botController.enabled = true;
+        bot1Controller.gameObject.SetActive(true);
+        bot2Controller.gameObject.SetActive(true);
     }
 
     public void MultiMode()
     {
-        player1Controller.enabled = true;
-        player2Controller.enabled = true;
+        player1Controller.gameObject.SetActive(true);
+        player2Controller.gameObject.SetActive(true);
+
+        bot1Controller.gameObject.SetActive(false);
+        bot2Controller.gameObject.SetActive(false);
     }
 }
