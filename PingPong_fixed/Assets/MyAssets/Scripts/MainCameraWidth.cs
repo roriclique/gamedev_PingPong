@@ -9,6 +9,10 @@ public class MainCameraWidth : MonoBehaviour
     [SerializeField] public GameObject topSide;
     [SerializeField] public GameObject leftSide;
 
+    /*[SerializeField] private GameObject firstPlayer;
+    [SerializeField] private GameObject secondPlayer;
+    [SerializeField] private GameObject ballObj;*/
+
     private void Start()
     {
         mainCamera = Camera.main;

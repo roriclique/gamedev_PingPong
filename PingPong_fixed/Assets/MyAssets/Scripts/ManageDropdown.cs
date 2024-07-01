@@ -23,6 +23,7 @@ public class ManageDropdown : MonoBehaviour
     {
         int playersCount = dropdownPlayers.value + 1;
         string controlType = dropdownModesOnePlayer.options[dropdownModesOnePlayer.value].text;
+        string controlType2 = dropdownModesTwoPlayers.options[dropdownModesTwoPlayers.value].text;
 
         SetupPlayerController(firstPlayer, controlType);
 
@@ -34,7 +35,7 @@ public class ManageDropdown : MonoBehaviour
         {
             dropdownModesTwoPlayers.gameObject.SetActive(true);
 
-            SetupPlayerController(secondPlayer, controlType);
+            SetupPlayerController(secondPlayer, controlType2);
         }
     }
 
