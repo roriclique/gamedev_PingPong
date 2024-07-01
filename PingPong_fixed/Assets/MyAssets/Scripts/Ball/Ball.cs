@@ -43,14 +43,9 @@ public class Ball : MonoBehaviour
 
         if (collision.gameObject.CompareTag("GameZone"))
         {
-            Vector2 newPos = new Vector2(direction.x, direction.y);
             Vector2 normal = new Vector2(0, 1);
-
-            Vector2 newPos2 = Vector2.Reflect(newPos, normal);
-
-            direction.x = newPos2.x;
-            direction.y = newPos2.y;
-            
+            float newPos = direction.x * normal.x + direction.y * normal.y;
+            direction = direction - 2 * newPos * normal;
         }
 
         if (collision.gameObject.CompareTag("Score1Player") || collision.gameObject.CompareTag("Score2Player"))

@@ -1,83 +1,65 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private float fieldWidthUnits;
     [SerializeField] private Ball ball;
+    [SerializeField] private MainCameraWidth mainCameraWidth;
+    private float fieldHeight;
 
-    public GameObject player1Controller;
-    public GameObject player2Controller;
-    public GameObject bot1Controller;
-    public GameObject bot2Controller;
+    public enum ControlType { Mouse, Keyboard, Bot}
+    private ControlType controlType;
 
-    private void Start()
+    [SerializeField] private Transform playerTransform;
+
+    public void SetControlType(ControlType type)
     {
-        if (gameObject.CompareTag("Bot"))
-        {
-            BotPlayerController();
-        }
-        else if (gameObject.CompareTag("Player"))
-        {
-            Player1Controller();
-        }
-        else if (gameObject.CompareTag("Player2"))
-        {
-            Player2Controller();
-        }
-    }
-    void FixedUpdate()
-    {
-        Start();
+        controlType = type;
     }
 
-    public void Player1Controller()
+    private void Update()
     {
-        //Получение позиции мыши
+        fieldHeight = mainCameraWidth.topSide.transform.position.y * 2;
+
+        switch (controlType)
+        {
+            case ControlType.Mouse:
+                MousePlayerControl();
+                break;
+            case ControlType.Keyboard:
+                KeyboardPlayerControl();
+                break;
+            case ControlType.Bot:
+                BotPlayerControl();
+                break;
+        }
+    }
+
+    private void MousePlayerControl()
+    {
         Vector3 mousePosition = Input.mousePosition;
-
-        //Интеграция фактического положение мыши игрока в игру
         float mousePosY = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane)).y;
-
-        //Ограничение положения
-        float clampedY = Mathf.Clamp(mousePosY, -fieldWidthUnits / 2, fieldWidthUnits / 2);
-
-        //Обновление позиции объекта
-        transform.position = new Vector3(transform.position.x, clampedY, transform.position.z);
+        float clampedY = Mathf.Clamp(mousePosY, -fieldHeight / 2, fieldHeight / 2);
+        playerTransform.position = new Vector3(playerTransform.position.x, clampedY, playerTransform.position.z);
     }
 
-    public void Player2Controller()
+    private void KeyboardPlayerControl()
     {
-        //Управление объектом по вертикали с помощью стрелок на клаве
         float moveInput = Input.GetAxis("Vertical");
-
-        //Вычисление целевой позиции объекта
-        float newY = transform.position.y + moveInput * (ball.speed * 5) * Time.deltaTime;
-
-        //Ограничение нового положения
-        float clampedY = Mathf.Clamp(newY, -fieldWidthUnits / 2, fieldWidthUnits / 2);
-
-        //Обновление позиции объекта
-        transform.position = new Vector3(transform.position.x, clampedY, transform.position.z);
+        float newY = playerTransform.position.y + moveInput * (ball.speed * 5) * Time.deltaTime;
+        float clampedY = Mathf.Clamp(newY, -fieldHeight / 2, fieldHeight / 2);
+        playerTransform.position = new Vector3(playerTransform.position.x, clampedY, playerTransform.position.z);
     }
 
-    public void BotPlayerController()
+    private void BotPlayerControl()
     {
-        //Вычисление целевой позиции мяча (значение, мин, макс)
-        float targetY = Mathf.Clamp(ball.transform.position.y, -fieldWidthUnits, fieldWidthUnits);
-
-        //Линейная интерполяция нового положения (начальное значение, конечное значение, интерполяционный параметр)
+        float targetY = Mathf.Clamp(ball.transform.position.y, -fieldHeight, fieldHeight);
         float newY = Mathf.Lerp(ball.transform.position.y, targetY, ball.speed * Time.deltaTime);
+        float clampedY = Mathf.Clamp(newY, -fieldHeight / 2, fieldHeight / 2);
 
-        //Ограничение нового положения
-        float clampedY = Mathf.Clamp(newY, -fieldWidthUnits / 2, fieldWidthUnits / 2);
-
-        if (Vector3.Distance(transform.position, ball.transform.position) <= 12f)
+        if (Vector3.Distance(playerTransform.position, ball.transform.position) <= 12f)
         {
-            //Обновление позиции объекта
-            transform.position = new Vector3(transform.position.x, clampedY, transform.position.z);
-        }      
+            playerTransform.position = new Vector3(playerTransform.position.x, clampedY, playerTransform.position.z);
+        }
     }
 }
 

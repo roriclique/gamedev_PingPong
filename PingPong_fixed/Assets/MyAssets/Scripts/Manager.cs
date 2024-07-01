@@ -17,6 +17,7 @@ public class Manager : MonoBehaviour
     {
         sceneToDisable.SetActive(true);
         menuWindow.MenuIsActive();
+        ball.enabled = true;
         Time.timeScale = 0f;
     }
 
@@ -31,14 +32,12 @@ public class Manager : MonoBehaviour
     public void MenuInvocation()
     {
         menuWindow.MenuIsActiveResume();
-        //menuIsActive = true;
         Time.timeScale = 0f;
     }
 
     public void MenuCloseToContinue()
     {
         menuWindow.CloseMenu();
-        //menuIsActive = false;
         Time.timeScale = 1f;
     }
 
