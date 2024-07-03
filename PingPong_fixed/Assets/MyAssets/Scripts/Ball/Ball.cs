@@ -27,25 +27,24 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector2 normal = collision.contacts[0].normal;
+        float newPos = direction.x * normal.x + direction.y * normal.y;
+        
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
         {
-            direction.x = -direction.x;
-            direction.y = Random.Range(-1f, 1f);
+            direction = direction - 2 * newPos * normal;
             speed += accelSpeed;
         }
 
-        if (collision.gameObject.CompareTag("Bot"))
+        if (collision.gameObject.CompareTag("Shape"))
         {
-            direction.x = -direction.x;
-            direction.y = Random.Range(-1f, 1f);
-            speed += accelSpeed;
+            direction = direction - 2 * newPos * normal;
         }
 
         if (collision.gameObject.CompareTag("GameZone"))
         {
-            Vector2 normal = new Vector2(0, 1);
-            float newPos = direction.x * normal.x + direction.y * normal.y;
             direction = direction - 2 * newPos * normal;
+            speed += accelSpeed;
         }
 
         if (collision.gameObject.CompareTag("Score1Player") || collision.gameObject.CompareTag("Score2Player"))

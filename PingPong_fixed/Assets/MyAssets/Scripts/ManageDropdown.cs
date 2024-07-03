@@ -22,7 +22,7 @@ public class ManageDropdown : MonoBehaviour
         }
 
         dropdownPlayers.onValueChanged.AddListener(delegate { UpdatePlayers(); });
-        dropdownModesOnePlayer.onValueChanged.AddListener(delegate { UpdateDropdownList(); });
+        dropdownModesOnePlayer.onValueChanged.AddListener(delegate { UpdateDropdownList(); UpdatePlayers(); });
         dropdownModesTwoPlayers.onValueChanged.AddListener(delegate { UpdatePlayers(); });
 
         UpdateDropdownList();
@@ -47,6 +47,8 @@ public class ManageDropdown : MonoBehaviour
             dropdownModesTwoPlayers.gameObject.SetActive(true);
             SetupPlayerController(secondPlayer, controlType2);
         }
+        
+        dropdownModesOnePlayer.RefreshShownValue();
     }
 
     private void UpdateDropdownList()
@@ -62,7 +64,7 @@ public class ManageDropdown : MonoBehaviour
                 dropdownModesTwoPlayers.options.Add(new TMP_Dropdown.OptionData(option));
             }
         }
-        dropdownModesOnePlayer.RefreshShownValue();
+
         dropdownModesTwoPlayers.RefreshShownValue();
     }
 
