@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class UIScores : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreTxtFirstPlayer;
-    [SerializeField] private TextMeshProUGUI scoreTxtSecondPlayer;
+    public TextMeshProUGUI scoreTxtFirstPlayer;
+    public TextMeshProUGUI scoreTxtSecondPlayer;
 
     [SerializeField] private ScoreCollector scoreCollector;
 

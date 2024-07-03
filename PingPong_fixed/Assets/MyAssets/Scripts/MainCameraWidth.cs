@@ -1,25 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MainCameraWidth : MonoBehaviour
 {
     public Camera mainCamera;
-    [SerializeField] private GameObject gamezoneHolder;
+    public GameObject gamezoneHolder;
 
-    [SerializeField] public GameObject topSide;
-    [SerializeField] public GameObject leftSide;
+    public GameObject gamezoneTopSide;
+    public GameObject gamezoneLeftSide;
 
-    /*[SerializeField] private GameObject firstPlayer;
-    [SerializeField] private GameObject secondPlayer;
-    [SerializeField] private GameObject ballObj;*/
-
-    private void Start()
+    void Awake()
     {
         mainCamera = Camera.main;
-    }
 
-    private void Update()
-    {
         var height = Screen.height;
         var scaleY = height / mainCamera.rect.height;
         var width = Screen.width;

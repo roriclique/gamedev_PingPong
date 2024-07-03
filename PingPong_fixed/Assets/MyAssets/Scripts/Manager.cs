@@ -3,59 +3,54 @@ using System;
 
 public class Manager : MonoBehaviour
 {
-    [SerializeField] private Ball ball;
+    [SerializeField] private static Ball ball;
 
     [SerializeField] private UI menuWindow;
-    [SerializeField] private ScoreCollector scoreCollector;
-    [SerializeField] private Modes modes;
-
     [SerializeField] private GameObject sceneToDisable;
 
-    private bool menuIsActive;
+
+    [SerializeField] private Controller controller1Player;
+    [SerializeField] private Controller controller2Player;
+
+    private bool isActiveMenu;
 
     void Start()
     {
-        sceneToDisable.SetActive(true);
         menuWindow.MenuIsActive();
-        ball.enabled = true;
+        isActiveMenu = true;
         Time.timeScale = 0f;
     }
 
     void Update()
-    {
+    { 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             MenuInvocation();
+        }
+
+        if (isActiveMenu)
+        {
+            controller1Player.enabled = false;
+            controller2Player.enabled = false;
+        }
+        else
+        {
+            controller1Player.enabled = true;
+            controller2Player.enabled = true;
         }
     }
 
     public void MenuInvocation()
     {
         menuWindow.MenuIsActiveResume();
+        isActiveMenu = true;
         Time.timeScale = 0f;
     }
 
     public void MenuCloseToContinue()
     {
         menuWindow.CloseMenu();
-        Time.timeScale = 1f;
-    }
-
-    public void SetBotMode()
-    {
-        menuWindow.CloseMenu();
-        scoreCollector.StartScores();
-        modes.BotMode();
-
-        Time.timeScale = 1f;
-    }
-
-    public void SetMultiMode()
-    {
-        menuWindow.CloseMenu();
-        scoreCollector.StartScores();
-        modes.MultiMode();
-
+        isActiveMenu = false;
         Time.timeScale = 1f;
     }
 
@@ -65,6 +60,7 @@ public class Manager : MonoBehaviour
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+        sceneToDisable.SetActive(false);
 #endif
     }
 

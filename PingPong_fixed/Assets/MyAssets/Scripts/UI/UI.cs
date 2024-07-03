@@ -5,9 +5,11 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject menuWindow;
+
     [SerializeField] private TMP_Dropdown dropdownPlayers;
     [SerializeField] private TMP_Dropdown dropdownModes;
     [SerializeField] private TMP_Dropdown dropdownModes2;
+    
     [SerializeField] private Button exitButton;
     [SerializeField] private Button continueButton;
     [SerializeField] private Button goButton;

@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
@@ -11,6 +9,8 @@ public class Ball : MonoBehaviour
     private Vector2 startPosition;
     private float startSpeed;
     public Rigidbody2D rb;
+
+    
 
     void Start()
     {
