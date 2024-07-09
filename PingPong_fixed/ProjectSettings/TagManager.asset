@@ -10,6 +10,7 @@ TagManager:
   - Bot
   - Player2
   - Bot2
+  - Shape
   layers:
   - Default
   - TransparentFX
